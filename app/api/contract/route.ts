@@ -1,7 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { Redis } from '@upstash/redis'
 
-const kv = Redis.fromEnv()
+const kv = new Redis({
+  url: process.env.KV_REST_API_URL!,
+  token: process.env.KV_REST_API_TOKEN!,
+})
 const ETHERSCAN_KEY = process.env.ETHERSCAN_API_KEY!
 const BASE_CHAIN_ID = '8453'
 const API_BASE = 'https://api.etherscan.io/v2/api'
